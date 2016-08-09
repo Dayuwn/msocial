@@ -20,6 +20,7 @@ export default class LoginPage extends React.Component {
                     <EmailPasswordForm
                         submitBtnLabel="Login"
                         submitAction={this.loginWithPassword}
+                        addPasswordConfirmation='false'
                     />
                 </div>
             </div>

@@ -6,9 +6,6 @@ export default class RegisterPage extends React.Component {
         e.preventDefault();
 
         Accounts.createUser({
-            name: 'Lucas',
-            last_name: 'Rollet',
-            birthday: '10/07/1999',
             email: $('#email').val(),
             password: $('#password').val(),
         },
@@ -26,6 +23,7 @@ export default class RegisterPage extends React.Component {
                 <EmailPasswordForm
                     submitAction={this.registerUser.bind(this)}
                     submitBtnLabel='Register'
+                    addPasswordConfirmation='true'
                 />
             </div>
         </div>
