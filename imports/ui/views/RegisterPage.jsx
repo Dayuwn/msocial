@@ -1,5 +1,5 @@
 import React from 'react';
-import EmailPasswordForm from '../forms/EmailPasswordForm.jsx';
+import RegisterForm from '../forms/RegisterForm.jsx';
 
 export default class RegisterPage extends React.Component {
     registerUser(e) {
@@ -17,15 +17,9 @@ export default class RegisterPage extends React.Component {
 
   render() {
     return (
-        <div className='row'>
-            <div className='col-md-6 col-md-offset-3'>
-                <h1>Register</h1>
-                <EmailPasswordForm
-                    submitAction={this.registerUser.bind(this)}
-                    submitBtnLabel='Register'
-                    addPasswordConfirmation='true'
-                />
-            </div>
+        <div>
+            <h1 className='col-md-6 col-md-offset-3'>Register</h1>
+            <RegisterForm submitAction={this.registerUser}/>
         </div>
     )
   }
