@@ -106,6 +106,8 @@ export default class RegisterForm extends React.Component {
         e.preventDefault();
         this.setState({errorMessages: errors});
 
+        /// TODO Add the same verifications(for length) server-side.
+
         // Double checks if no field is empty
         let allFieldsFilled = true;
         let formControls = document.getElementsByClassName('form-control');
@@ -143,12 +145,9 @@ export default class RegisterForm extends React.Component {
             this.setState({errorMessages: errors});
         }
 
-        // TODO Check if the username is already used
-
         // Submit form.
         if(errors.length === 0) {
             this.props.submitAction(e);
-            console.log('ok');
         }
     }
 

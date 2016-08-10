@@ -7,7 +7,11 @@ export default class LoginPage extends React.Component {
         const email = $('#email').val();
         const password = $('#password').val();
         Meteor.loginWithPassword(email, password, (error) => {
-            if(error) { console.log('Error : ' + error.reason) }
+            if(error) {
+                sAlert.error('Wrong username or password.',
+                            {effect: 'stackslide', position: 'top-left',
+                            timeout: 2000});
+            }
             else { FlowRouter.go('/') }
         });
     }

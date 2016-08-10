@@ -4,8 +4,6 @@ Meteor.startup(() => {
 
 });
 
-// TODO Update onCreateUser to fit registration form.
-
 Accounts.onCreateUser(function(options, user) {
     let username = options.profile.username;
     let usernameTaken = Meteor.users.find({'profile.username': username},

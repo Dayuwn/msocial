@@ -6,12 +6,30 @@ import AppHeader from './AppHeader.jsx';
 class App extends React.Component {
 
   showUserNav() {
-    return (
-      <ul className="nav navbar-nav navbar-right">
-        <li><a href="/login">Login</a></li>
-        <li><a href="/register">Register</a></li>
-      </ul>
-    );
+    return !this.props.signedIn?
+        <ul className="nav navbar-nav navbar-right">
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
+        </ul>
+    :
+        <ul className='nav navbar navbar-nav navbar-right'>
+            <li className='dropdown'>
+                <a href='#' className='dropdown-toggle' data-toggle='dropdown'
+                    role='button' aria-haspopup='true' aria-expanded='false'>
+                    {this.props.currentUser.username}
+                    <span className='caret'></span>
+                </a>
+                <ul className='dropdown-menu'>
+                    <li>
+                        <a href='/logout'>Sign Out</a>
+                    </li>
+                    <li>
+                        <a href='/profile'>Profile</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    ;
   }
 
   render() {
@@ -29,11 +47,16 @@ class App extends React.Component {
 }
 
 export default createContainer(() => {
-    let subscription = Meteor.subscribe('userData')
-    let subReady = subscription.ready()
+    let subscription = Meteor.subscribe('userData');
+    let subReady = subscription.ready();
+
+    let currentUser;
+    if(subReady)
+        currentUser = Meteor.user();
 
     return {
-        subscription: subscription,
         subReady: subReady,
+        currentUser: currentUser,
+        signedIn: Meteor.user() != null,
     };
 }, App);
