@@ -16,6 +16,7 @@ export default class RegisterForm extends React.Component {
             return <li key={index}>{item}</li>
         });
     }
+
     renderErrorMessages() {
         if(this.state.errorMessages.length > 0) {
             return (
@@ -32,6 +33,10 @@ export default class RegisterForm extends React.Component {
         }
     }
 
+    // Render a register form with following field
+    //      - Name   | - Last Name
+    // - Username | - Country  | - Birhtday
+    //  - Email | - Password | - Password Confirmation
     render() {
         return (
         <div className='col-xs-6 col-sm-6 col-md-offset-3'>
@@ -67,7 +72,7 @@ export default class RegisterForm extends React.Component {
                         </select>
                     </div>
                     <div className='col-xs-4'>
-                        <label htmlFor='birhtday'>Age:</label>
+                        <label htmlFor='birhtday'>Birthday:</label>
                         <input type='text' id='birthday' placeholder='yyyy/mm/dd'
                                className='form-control' required />
                     </div>
@@ -126,13 +131,19 @@ export default class RegisterForm extends React.Component {
             this.setState({errorMessages: errors});
         }
 
-        // Password too short ?
-        if($('#password').val().length < 8) {
-            errors.push('Password is too short.');
+        // Username too short ?
+        if($('#username').val(). length < 4) {
+            errors.push('User name must at least contain 4 characters.');
             this.setState({errorMessages: errors});
         }
 
-        // TODO : Check if the username is already used
+        // Password too short ?
+        if($('#password').val().length < 8) {
+            errors.push('Password must at least contain 8 characters.');
+            this.setState({errorMessages: errors});
+        }
+
+        // TODO Check if the username is already used
 
         // Submit form.
         if(errors.length === 0) {
@@ -141,10 +152,13 @@ export default class RegisterForm extends React.Component {
         }
     }
 
+    // Called after render()
     componentDidMount() {
+        // Populate country selector
         populateCountries('country');
     }
 }
+
 RegisterForm.propTypes = {
     submitAction: React.PropTypes.func.isRequired,
 }

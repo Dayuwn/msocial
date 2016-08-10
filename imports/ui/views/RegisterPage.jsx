@@ -6,13 +6,23 @@ export default class RegisterPage extends React.Component {
         e.preventDefault();
 
         Accounts.createUser({
+            profile: {
+                name: $('#name').val(),
+                lastName: $('#last-name').val(),
+                country: $('#country option:selected').text(),
+                birthday: $('#birthday').val(),
+            },
+            username: $('#username').val(),
             email: $('#email').val(),
             password: $('#password').val(),
         },
         (error) => {
-            if(error) { console.log('Error: ' + error.reason) }
+            if(error) {
+                sAlert.error('Error !    ' + error.reason,
+                {effect: 'stackslide', position: 'top-left', timeout: 10000});
+             }
             else { FlowRouter.go('home') }
-        })
+        });
     }
 
   render() {

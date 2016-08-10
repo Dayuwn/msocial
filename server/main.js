@@ -4,7 +4,18 @@ Meteor.startup(() => {
 
 });
 
+// TODO Update onCreateUser to fit registration form.
+
 Accounts.onCreateUser(function(options, user) {
-    user.profile
-    return user;
+    let username = options.profile.username;
+    let usernameTaken = Meteor.users.find({'profile.username': username},
+                                            {limit: 1}).count() > 0;
+    if(usernameTaken) {
+        throw new Meteor.Error(403, 'This username is already taken.');
+    }
+    else {
+        user.profile = options.profile;
+        user.username = options.username;
+        return user;
+    }
 });
