@@ -61,4 +61,4 @@ FlowRouter.route('/logout', {
                             position: 'top-left', timeout: 2000});
         })
     }
-})
+});

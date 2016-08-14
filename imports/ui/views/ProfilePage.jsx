@@ -4,13 +4,25 @@ import {createContainer} from 'meteor/react-meteor-data';
 class ProfilePage extends React.Component {
     render() {
         return this.props.subReady?
-            <div className='container'>
+            <div className='col-md-6 col-md-offset-3'>
                 <h1>{this.props.currentUser.username}</h1>
-                <ul>
-                    <li><b>Name      : </b>{this.props.currentUser.profile.name}</li>
-                    <li><b>Last Name : </b>{this.props.currentUser.profile.lastName}</li>
-                    <li><b>Birthday  : </b>{this.props.currentUser.profile.birthday}</li>
-                    <li><b>Country   : </b>{this.props.currentUser.profile.country}</li>
+                <ul className='list-group'>
+                    <li className='list-group-item'>
+                        <b>Name      : </b>
+                        {this.props.currentUser.profile.name}
+                    </li>
+                    <li className='list-group-item'>
+                        <b>Last Name : </b>
+                        {this.props.currentUser.profile.lastName}
+                    </li>
+                    <li className='list-group-item'>
+                        <b>Birthday  : </b>
+                        {this.props.currentUser.profile.birthday}
+                    </li>
+                    <li className='list-group-item'>
+                        <b>Country   : </b>
+                        {this.props.currentUser.profile.country}
+                    </li>
                 </ul>
             </div>
         :
