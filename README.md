@@ -7,7 +7,6 @@ Functionalities :
   - User accounts with custom fields
   - Friend system ( more like a Twitter sub though )
   - Posts system : you can see your friend's posts
-  - Comments on posts
   - Simple profile pages
   - Friends list
 
