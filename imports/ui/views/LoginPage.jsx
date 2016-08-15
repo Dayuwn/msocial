@@ -1,6 +1,7 @@
 import React from 'react';
 import LoginForm from '../forms/LoginForm.jsx';
 
+// GET '/login'
 export default class LoginPage extends React.Component {
     loginWithPassword(e) {
         e.preventDefault();

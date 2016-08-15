@@ -1,7 +1,9 @@
 import React from 'react';
 import {createContainer} from 'meteor/react-meteor-data';
 
+// GET '/profile'
 class ProfilePage extends React.Component {
+    // Shows the name, last name, birthday, and country of the current user
     render() {
         return this.props.subReady?
             <div className='col-md-6 col-md-offset-3'>

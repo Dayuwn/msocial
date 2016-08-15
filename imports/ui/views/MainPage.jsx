@@ -2,7 +2,9 @@ import React from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Posts } from '../../api/posts.js';
 
+// GET '/'
 class MainPage extends React.Component {
+    // Returns all friends posts
     getPosts() {
         if(!this.props.subReady) {
             return (
@@ -36,6 +38,7 @@ class MainPage extends React.Component {
         }
     }
 
+    // The form used to make a new post
     renderForm() {
         return (
             <li className='list-group-item'>
@@ -45,7 +48,7 @@ class MainPage extends React.Component {
                             type='text' placeholder='New post...'
                             id='new-post' />
                     </div>
-                    <div className='form-group'>
+                    <div className='form-actions'>
                         <button type='submit' className='btn btn-primary'
                             style={{width: '100%'}}>
                             Post

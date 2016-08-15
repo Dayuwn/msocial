@@ -1,6 +1,7 @@
 import React from 'react';
 
-export default class RegisterForm extends React.Component {
+// Render a form with an email and a password field.
+export default class EmailPasswordForm extends React.Component {
     render() {
         return (
             <div className='col-xs-12 col-sm-12'>

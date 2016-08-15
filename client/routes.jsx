@@ -8,6 +8,7 @@ import MainPage from '../imports/ui/views/MainPage.jsx';
 import LoginPage from '../imports/ui/views/LoginPage.jsx';
 import RegisterPage from '../imports/ui/views/RegisterPage.jsx';
 import ProfilePage from '../imports/ui/views/ProfilePage.jsx';
+import FriendsListPage from '../imports/ui/views/FriendsListPage.jsx';
 
 function redirectIfNotSignedIn(context, redirect) {
     AppLibRedirectPath = context.path;
@@ -28,7 +29,7 @@ FlowRouter.route('/', {
 FlowRouter.route('/login', {
     name: 'login',
     action: function() {
-        if(Meteor.user() === null) {
+        if(!Meteor.userId()) {
             mount(App, {content: <LoginPage />});
         }
     }
@@ -37,7 +38,7 @@ FlowRouter.route('/login', {
 FlowRouter.route('/register', {
     name: 'register',
     action: function() {
-        if(Meteor.user() === null) {
+        if(!Meteor.userId()) {
             mount(App, {content: <RegisterPage />});
         }
     }
@@ -46,10 +47,9 @@ FlowRouter.route('/register', {
 FlowRouter.route('/profile', {
     name: 'profile',
     action: function() {
-        if(Meteor.user() !== null) {
-            mount(App, {content: <ProfilePage />});
-        }
-    }
+        mount(App, {content: <ProfilePage />});
+    },
+    triggersEnter: [redirectIfNotSignedIn],
 });
 
 FlowRouter.route('/logout', {
@@ -60,5 +60,14 @@ FlowRouter.route('/logout', {
             sAlert.success("You've been signed out.", {effect: 'stackslide',
                             position: 'top-left', timeout: 2000});
         })
-    }
+    },
+    triggersEnter: [redirectIfNotSignedIn],
+});
+
+FlowRouter.route('/friends', {
+    name: 'friendsList',
+    action: function() {
+        mount(App, {content: <FriendsListPage />})
+    },
+    triggersEnter: [redirectIfNotSignedIn],
 });

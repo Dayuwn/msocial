@@ -25,6 +25,7 @@ Meteor.methods({
 })
 
 if(Meteor.isServer) {
+    // Publish all friends' posts data
     Meteor.publish('postsData', function() {
         let friendsPosts = [];
         let allPosts = Posts.find();
