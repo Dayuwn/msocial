@@ -11,4 +11,4 @@ Functionalities :
   - Simple profile pages
   - Friends list
 
-See [ADD WIKI] for screenshots.
+See https://github.com/Dayuwn/msocial/wiki for screenshots.
